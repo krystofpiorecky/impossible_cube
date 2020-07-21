@@ -5,7 +5,9 @@ let canvas,
 let mouse = {
 	x: 0,
 	y: 0
-}
+};
+
+let t = Math.PI*60;
 
 window.onload = e => 
 {
@@ -17,18 +19,22 @@ window.onload = e =>
 
 	icube = new ImpossibleCube(
 		new Vector3(1, 1, 1),
-		new Vector3(0, 0, 1.3),
-		.05
+		new Vector3(0, 0, 1.7),
+		.2
 	);
 
-	icube.rotateY(Math.PI/4);
+	// icube = new Block(
+	// 	new Vector3(1, 1, 1),
+	// 	new Vector3(0, 0, 1.5),
+	// );
+
+	// icube.rotateY(Math.PI/8);
 	// icube.rotateX(Math.PI/10);
 	// icube.rotateZ(Math.PI/12);
 
 	canvas.width = 1000;
 	canvas.height = 1000;
-	c.fillStyle = "#fff";
-	c.lineWidth = 3;
+	c.lineWidth = 1;
 
 	draw();
 	setInterval(draw, 16);
@@ -47,7 +53,16 @@ function draw()
 
 	icube.draw(c);
 
-	icube.rotateY(Math.PI/200);
-	icube.rotateX(Math.PI/300);
+	icube.rotateY(Math.PI/600 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
+	icube.rotateX(Math.PI/2000 * (Math.sin(t/120)));
+
+	// c.beginPath();
+	// c.moveTo(100, 100);
+	// c.lineTo(120, 150);
+	// c.lineTo(100, 150);
+	// c.fill();
+
 	// icube.rotateZ(Math.PI/12);
+
+	t++;
 }
