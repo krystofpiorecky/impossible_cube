@@ -8,6 +8,7 @@ class Block
 		this.points = [];
 
 		this.createPoints();
+		this.createSides();
 	}
 
 	createPoints()
@@ -33,6 +34,29 @@ class Block
 				)
 			);
 		}
+	}
+
+	createSides()
+	{
+		let points = [
+			[0,4,6,2],
+			[1,5,7,3],
+			[2,3,7,6],
+			[0,1,5,4],
+			[0,1,3,2],
+			[4,5,7,6]
+		];
+
+		this.sides = points.map(points => {
+			return new Side(
+				[
+					this.points[points[0]],
+					this.points[points[1]],
+					this.points[points[2]],
+					this.points[points[3]]
+				]
+			);
+		});
 	}
 
 	draw(_canvas)
