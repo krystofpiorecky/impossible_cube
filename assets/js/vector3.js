@@ -93,6 +93,23 @@ class Vector3
 		return this;
 	}
 
+	modify(_function)
+	{
+		return this.from(_function(this));
+	}
+
+	modifyEach(_function)
+	{
+		return this.modify(
+			({x, y, z}) => 
+			new Vector3(
+				_function(x),
+				_function(y),
+				_function(z)
+			)
+		);
+	}
+
 	add(_vector2)
 	{
 		this.x += _vector2.x;
@@ -115,5 +132,14 @@ class Vector3
 	{
 		return this.copy()
 			.add(_vector3);
+	}
+
+	length()
+	{
+		return Math.sqrt(
+			Math.pow(this.x, 2) +
+			Math.pow(this.y, 2) +
+			Math.pow(this.z, 2)
+		);
 	}
 }

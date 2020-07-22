@@ -25,6 +25,12 @@ window.onload = e =>
 		.1
 	);
 
+	// icube = new ImpossibleCube(
+	// 	new Vector3(10, 10, 10),
+	// 	new Vector3(0, 0, 20),
+	// 	5
+	// );
+
 	// icube = new Block(
 	// 	new Vector3(1, 1, 1),
 	// 	new Vector3(0, 0, 1.5),

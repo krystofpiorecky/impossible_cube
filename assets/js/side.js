@@ -14,7 +14,7 @@ class Side
 		);
 
 		// console.log( this.facing.y);
-		let color = "hsl(40, 80%, " + (80-(500*this.facing.y+50)*0.8) + "%";
+		let color = "hsl(40, 80%, " + (80-(25*this.facing.y+50)*0.8) + "%";
 			// "rgba(" + Math.floor(Math.random()*255) + 
 			// "," + Math.floor(Math.random()*255) + 
 			// "," + Math.floor(Math.random()*255) + ",1)";
@@ -70,13 +70,7 @@ class Side
 
 	get distance()
 	{
-		const {x, y, z} = this.middle;
-
-		return Math.sqrt(
-			Math.pow(x, 2) +
-			Math.pow(y, 2) +
-			Math.pow(z, 2)
-		);
+		return this.middle.length();
 	}
 
 	get middle()
@@ -93,6 +87,14 @@ class Side
 	get facing()
 	{
 		return this.middle
-			.subtract(this.facing_from);
+			.subtract(this.facing_from)
+			.modify(v => {
+				let l = v.length();
+				return new Vector3(
+					v.x / l,
+					v.y / l,
+					v.z / l
+				);
+			});
 	}
 }

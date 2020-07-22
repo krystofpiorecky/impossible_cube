@@ -65,16 +65,6 @@ class ImpossibleCube
 
 		let {x, y, z} = this.size;
 		let w = this.block_width;
-
-		let dist = [
-			new Vector3(0, -0.5, -0.5), new Vector3(0, 0.5, -0.5), new Vector3(0, 0.5, 0.5), new Vector3(0, -0.5, 0.5),
-			new Vector3(-0.5, 0, -0.5), new Vector3(0.5, 0, -0.5), new Vector3(0.5, 0, 0.5), new Vector3(-0.5, 0, 0.5),
-			new Vector3(-0.5, -0.5, 0), new Vector3(0.5, -0.5, 0), new Vector3(0.5, 0.5, 0), new Vector3(-0.5, 0.5, 0),
-			
-			new Vector3(-0.5, -0.5, -0.5), new Vector3(0.5, -0.5, -0.5), new Vector3(-0.5, 0.5, -0.5), new Vector3(0.5, 0.5, -0.5),
-			new Vector3(-0.5, -0.5, 0.5), new Vector3(0.5, -0.5, 0.5), new Vector3(-0.5, 0.5, 0.5), new Vector3(0.5, 0.5, 0.5)
-		];
-
 		let f = 0.001; // fill line space
 
 		let sizes = [
@@ -83,6 +73,17 @@ class ImpossibleCube
 			new Vector3(0, 0, z).add(new Vector3(w, w, -w)).add(new Vector3(0, 0, f)), 
 			new Vector3(w, w, w), 
 			new Vector3(w, w, w)
+		];
+
+		x /= 2; y /= 2; z /= 2;
+
+		let dist = [
+			new Vector3(0, -y, -z), new Vector3(0, y, -z), new Vector3(0, y, z), new Vector3(0, -y, z),
+			new Vector3(-x, 0, -z), new Vector3(x, 0, -z), new Vector3(x, 0, z), new Vector3(-x, 0, z),
+			new Vector3(-x, -y, 0), new Vector3(x, -y, 0), new Vector3(x, y, 0), new Vector3(-x, y, 0),
+			
+			new Vector3(-x, -y, -z), new Vector3(x, -y, -z), new Vector3(-x, y, -z), new Vector3(x, y, -z),
+			new Vector3(-x, -y, z), new Vector3(x, -y, z), new Vector3(-x, y, z), new Vector3(x, y, z)
 		];
 
 		for(let i = 0; i < dist.length; i++)
