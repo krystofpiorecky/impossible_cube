@@ -20,7 +20,7 @@ window.onload = e =>
 	icube = new ImpossibleCube(
 		new Vector3(1, 1, 1),
 		new Vector3(0, 0, 1.7),
-		.2
+		.1
 	);
 
 	// icube = new Block(
@@ -53,12 +53,12 @@ function draw()
 
 	icube.draw(c);
 
-	// icube.rotateY(Math.PI/300 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
-	// icube.rotateX(Math.PI/1000 * (Math.sin(t/120)));
+	icube.rotateY(Math.PI/300 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
+	icube.rotateX(Math.PI/1000 * (Math.sin(t/120)));
 
-	icube.rotateY(Math.PI/200);
-	icube.rotateX(Math.PI/300);
-	icube.rotateZ(Math.PI/800);
+	// icube.rotateY(Math.PI/200);
+	// icube.rotateX(Math.PI/300);
+	// icube.rotateZ(Math.PI/800);
 
 	// c.beginPath();
 	// c.moveTo(100, 100);

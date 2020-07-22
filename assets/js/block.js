@@ -54,7 +54,8 @@ class Block
 					this.points[points[1]],
 					this.points[points[2]],
 					this.points[points[3]]
-				]
+				],
+				this.position
 			);
 		});
 	}
@@ -100,6 +101,8 @@ class Block
 			p => p.rotateX(_angle, _anchor)
 		);
 
+		this.position.rotateX(_angle, _anchor);
+
 		return this;
 	}
 
@@ -109,6 +112,8 @@ class Block
 			p => p.rotateY(_angle, _anchor)
 		);
 
+		this.position.rotateY(_angle, _anchor);
+
 		return this;
 	}
 
@@ -117,6 +122,8 @@ class Block
 		this.points = this.points.map(
 			p => p.rotateZ(_angle, _anchor)
 		);
+
+		this.position.rotateZ(_angle, _anchor);
 
 		return this;
 	}

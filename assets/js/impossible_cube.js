@@ -76,15 +76,6 @@ class ImpossibleCube
 
 	createSides()
 	{
-		// let outer = [
-		// 	[2,3,4,5], [4], [4], [4],
-		// 	[4], [4], [], [],
-		// 	[], [], [], [],
-
-		// 	[4], [4], [4], [4],
-		// 	[], [], [], []
-		// ];
-
 		this.sides = [];
 
 		this.blocks.forEach(
@@ -96,6 +87,8 @@ class ImpossibleCube
 				}
 			)
 		);
+
+		// this.sides = [this.sides[4]];
 	}
 
 	createBlocks()
