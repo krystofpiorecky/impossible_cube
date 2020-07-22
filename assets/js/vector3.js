@@ -42,10 +42,10 @@ class Vector3
 		y = distance * Math.cos(angle);// + camera.rotation.y);
 		z = distance * Math.sin(angle);// + camera.rotation.y);
 		
-		let return_x = Math.floor(x * 500 / z);
-		let return_y = Math.floor(y * 500 / z);
-		
-		return new Vector2(return_x, return_y);
+		return new Vector2(
+			x * 500 / z, 
+			y * 500 / z
+		);
 	}
 
 	rotateX(_angle, _anchor)
