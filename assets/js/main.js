@@ -53,12 +53,12 @@ function draw()
 
 	icube.draw(c);
 
-	icube.rotateY(Math.PI/300 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
-	icube.rotateX(Math.PI/1000 * (Math.sin(t/120)));
+	// icube.rotateY(Math.PI/300 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
+	// icube.rotateX(Math.PI/1000 * (Math.sin(t/120)));
 
-	// icube.rotateY(Math.PI/200);
-	// icube.rotateX(Math.PI/300);
-	// icube.rotateZ(Math.PI/800);
+	icube.rotateY(Math.PI/200);
+	icube.rotateX(Math.PI/300);
+	icube.rotateZ(Math.PI/800);
 
 	// c.beginPath();
 	// c.moveTo(100, 100);

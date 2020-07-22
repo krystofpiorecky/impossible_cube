@@ -19,63 +19,32 @@ class ImpossibleCube
 			_canvas.canvas.height
 		);
 
-		this.blocks.forEach(
-			block => block.draw(_canvas)
-		);
-
-		// let outer = [
-		// 	[], [], [], [],
-		// 	[], [], [], [],
-		// 	[], [], [], [],
-
-		// 	[4], [4], [4], [4],
-		// 	[], [], [], []
-		// ];
-
-		// let colors = [
-		// 	"#f2c855",
-		// 	"#a38021",
-		// 	"#cca439",
-		// 	"#cca439",
-		// 	"#ba942f"
-		// ];
-
 		this.sides = this.sides.sort(
 			(a, b) => a.distance > b.distance ? -1 : 1
 		);
 
+		// draw sides
 		this.sides.forEach(
 			side => side.draw(_canvas)
 		);
 
-		// shapes.forEach(
-		// 	(shape, index) => {
-		// 		_canvas.fillStyle = colors[index];
-				
-		// 		let first = true;
-		// 		shape.forEach(([block, point]) => {
-		// 			let {x, y} = this
-		// 				.blocks[block]
-		// 				.points[point]
-		// 				.toVector2()
-		// 				.center(screen_size);
-
-		// 			if(first)
-		// 			{
-		// 				_canvas.moveTo(x, y);
-		// 				first = false;
-		// 			}
-		// 			else 
-		// 				_canvas.lineTo(x, y);
-		// 		});
-		// 		_canvas.fill();
-		// 	}
+		// draw lines
+		// this.blocks.forEach(
+		// 	block => block.draw(_canvas)
 		// );
-
 	}
 
 	createSides()
 	{
+		let hidden = [
+			[0,1], [0,1], [0,1], [0,1],
+			[2,3], [2,3], [2,3], [2,3],
+			[4,5], [4,5], [4,5], [4,5],
+
+			[1,2,5], [0,2,5], [1,3,5], [0,3,5],
+			[1,2,4], [0,2,4], [1,3,4], [0,3,4]
+		];
+
 		this.sides = [];
 
 		this.blocks.forEach(
@@ -83,12 +52,11 @@ class ImpossibleCube
 			block.sides.forEach(
 				(side, sideIndex) => 
 				{
-					this.sides.push(side);
+					if(hidden[blockIndex].indexOf(sideIndex) === -1)
+						this.sides.push(side);
 				}
 			)
 		);
-
-		// this.sides = [this.sides[4]];
 	}
 
 	createBlocks()
@@ -107,10 +75,12 @@ class ImpossibleCube
 			new Vector3(-0.5, -0.5, 0.5), new Vector3(0.5, -0.5, 0.5), new Vector3(-0.5, 0.5, 0.5), new Vector3(0.5, 0.5, 0.5)
 		];
 
+		let f = 0.001; // fill line space
+
 		let sizes = [
-			new Vector3(x, 0, 0).add(new Vector3(-w, w, w)), 
-			new Vector3(0, y, 0).add(new Vector3(w, -w, w)), 
-			new Vector3(0, 0, z).add(new Vector3(w, w, -w)), 
+			new Vector3(x, 0, 0).add(new Vector3(-w, w, w)).add(new Vector3(f, 0, 0)), 
+			new Vector3(0, y, 0).add(new Vector3(w, -w, w)).add(new Vector3(0, f, 0)), 
+			new Vector3(0, 0, z).add(new Vector3(w, w, -w)).add(new Vector3(0, 0, f)), 
 			new Vector3(w, w, w), 
 			new Vector3(w, w, w)
 		];
