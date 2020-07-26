@@ -2,6 +2,7 @@ class Side
 {
 	constructor(_points, _facing_from)
 	{
+		this.hue = 50;
 		this.facing_from = _facing_from;
 		this.points = _points;
 	}
@@ -13,15 +14,9 @@ class Side
 			_canvas.canvas.height
 		);
 
-		// console.log( this.facing.y);
-		let color = "hsl(40, 80%, " + (80-(25*this.facing.y+50)*0.8) + "%";
-			// "rgba(" + Math.floor(Math.random()*255) + 
-			// "," + Math.floor(Math.random()*255) + 
-			// "," + Math.floor(Math.random()*255) + ",1)";
-
 		let first = true;
 
-		_canvas.fillStyle = color;
+		_canvas.fillStyle = this.color;
 
 		_canvas.beginPath();
 
@@ -39,13 +34,13 @@ class Side
 				_canvas.lineTo(x, y);
 		});
 
-		let middle = this.points[0]
-			.copy()
-			.subtract({
-				x: (this.points[0].x - this.points[2].x) / 2,
-				y: (this.points[0].y - this.points[2].y) / 2,
-				z: (this.points[0].z - this.points[2].z) / 2
-			});
+		// let middle = this.points[0]
+		// 	.copy()
+		// 	.subtract({
+		// 		x: (this.points[0].x - this.points[2].x) / 2,
+		// 		y: (this.points[0].y - this.points[2].y) / 2,
+		// 		z: (this.points[0].z - this.points[2].z) / 2
+		// 	});
 		
 		// let {x, y} = middle
 		// 	.toVector2()
@@ -71,6 +66,7 @@ class Side
 	get distance()
 	{
 		return this.middle.length();
+		// return new Vector2(this.middle.y, this.middle.z).length();
 	}
 
 	get middle()
@@ -96,5 +92,10 @@ class Side
 					v.z / l
 				);
 			});
+	}
+
+	get color()
+	{
+		return "hsl(" + this.hue + ", 40%, " + (80-(25*this.facing.x+50)*0.8) + "%";
 	}
 }

@@ -24,27 +24,29 @@ class Vector3
 
 	toVector2()
 	{
-		let x = this.x; // - camera.position.x;
-		let y = this.y; // - camera.position.y;
-		let z = this.z; // - camera.position.z;
+		let x = this.x;
+		let y = this.y; 
+		let z = this.z;
 		let distance;
 		let angle;
 		
 		distance = Math.sqrt(Math.pow(x,2) + Math.pow(z,2));
 		angle = Math.atan2(z, x);
 		
-		x = distance * Math.cos(angle);// + camera.rotation.x);
-		z = distance * Math.sin(angle);// + camera.rotation.x);
+		x = distance * Math.cos(angle);
+		z = distance * Math.sin(angle);
 		
 		distance = Math.sqrt(Math.pow(y,2) + Math.pow(z,2));
 		angle = Math.atan2(z, y);
 		
-		y = distance * Math.cos(angle);// + camera.rotation.y);
-		z = distance * Math.sin(angle);// + camera.rotation.y);
+		y = distance * Math.cos(angle);
+		z = distance * Math.sin(angle);
 		
+		let zoom = 100;
+
 		return new Vector2(
-			x * 500 / z, 
-			y * 500 / z
+			x * 500 / z * zoom, 
+			y * 500 / z * zoom
 		);
 	}
 

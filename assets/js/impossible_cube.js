@@ -19,19 +19,71 @@ class ImpossibleCube
 			_canvas.canvas.height
 		);
 
+		let virtual_sides = [
+			{
+				replace_point: 3,
+				side: this.blocks[2].sides[3],
+				iside: this.blocks[7].sides[1],
+				point_numbers: [3, 2, 3, 0]
+			},
+			{
+				replace_point: 3,
+				side: this.blocks[2].sides[4],
+				iside: this.blocks[11].sides[3],
+				point_numbers: [3, 2, 1, 2]
+			},
+			{
+				replace_point: 1,
+				side: this.blocks[6].sides[0],
+				iside: this.blocks[3].sides[4],
+				point_numbers: [1, 2, 3, 2]
+			},
+			{
+				replace_point: 1,
+				side: this.blocks[6].sides[4],
+				iside: this.blocks[9].sides[0],
+				point_numbers: [1, 2, 3, 2]
+			},
+			{
+				replace_point: 1,
+				side: this.blocks[10].sides[3],
+				iside: this.blocks[5].sides[0],
+				point_numbers: [1, 2, 1, 2]
+			},
+			{
+				replace_point: 3,
+				side: this.blocks[10].sides[0],
+				iside: this.blocks[1].sides[3],
+				point_numbers: [3, 2, 3, 2]
+			}
+		]
+
 		this.sides = this.sides.sort(
 			(a, b) => a.distance > b.distance ? -1 : 1
 		);
 
 		// draw sides
-		this.sides.forEach(
+		this.sides.concat(
+			virtual_sides.map(
+				v => {
+					let points = [null, null, null, null];
+
+					points[v.replace_point] = Vector2.intersection(
+						v.side.points[v.point_numbers[0]].toVector2(), 
+						v.side.points[v.point_numbers[1]].toVector2(), 
+						v.iside.points[v.point_numbers[2]].toVector2(), 
+						v.iside.points[v.point_numbers[3]].toVector2()
+					).center(screen_size);
+
+					return new VirtualSide(
+						points,
+						v.side
+					);
+				}
+			)
+		).forEach(
 			side => side.draw(_canvas)
 		);
-
-		// draw lines
-		// this.blocks.forEach(
-		// 	block => block.draw(_canvas)
-		// );
 	}
 
 	createSides()

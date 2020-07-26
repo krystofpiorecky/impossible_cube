@@ -21,7 +21,7 @@ window.onload = e =>
 
 	icube = new ImpossibleCube(
 		new Vector3(1, 1, 1),
-		new Vector3(0, 0, 1.7),
+		new Vector3(0, 0, 100),
 		.1
 	);
 
@@ -36,13 +36,13 @@ window.onload = e =>
 	// 	new Vector3(0, 0, 1.5),
 	// );
 
-	// icube.rotateY(Math.PI/8);
-	// icube.rotateX(Math.PI/10);
-	// icube.rotateZ(Math.PI/12);
+	icube.rotateX(Math.PI/4);
+	icube.rotateY(Math.PI/3);
+	// icube.rotateZ(Math.PI/4);
 
 	canvas.width = 1000;
 	canvas.height = 1000;
-	c.lineWidth = 1;
+	c.lineWidth = 4;
 
 	draw();
 	setInterval(draw, 16);
@@ -74,21 +74,22 @@ function draw()
 {
 	c.clearRect(0, 0, canvas.width, canvas.height);
 
-	c.strokeStyle = "#999";
+	c.strokeStyle = "#fff";
 
 	icube.draw(c);
 
 	if(spinning)
 	{
-		// icube.rotateY(Math.PI/300 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
-		// icube.rotateX(Math.PI/1000 * (Math.sin(t/120)));
+		icube.rotateY(-Math.PI/2000 * (Math.sin(t/30))); //icube.rotateY(Math.PI/200 * (Math.sin(t/30)-1));
+		icube.rotateX(Math.PI/2000 * (Math.cos(t/30)));
 
-		icube.rotateY(Math.PI/200);
-		icube.rotateX(Math.PI/300);
-		icube.rotateZ(Math.PI/800);
+		// icube.rotateY(Math.PI/200);
+		// icube.rotateX(Math.PI/300);
+		// icube.rotateZ(Math.PI/800);
+
 
 		// icube.rotateZ(Math.PI/12);
 	}
 
-	t++;
+	t+=0.1;
 }
